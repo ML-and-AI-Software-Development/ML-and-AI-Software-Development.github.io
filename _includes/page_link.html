@@ -1,0 +1,1 @@
+{%- if jekyll.environment == "production" and site.unpublished_pages contains include.path -%}{{ include.text }}{%- else -%}[{{ include.text }}]({{ include.url }}){%- endif -%}

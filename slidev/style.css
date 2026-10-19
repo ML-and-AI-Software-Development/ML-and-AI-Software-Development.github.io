@@ -1,0 +1,13 @@
+.top-right-watermark {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 150px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+.grid:has(> .image-right-sm) {
+  grid-template-columns: 70% 30%;
+}

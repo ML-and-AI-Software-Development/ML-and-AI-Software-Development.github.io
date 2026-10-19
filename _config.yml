@@ -1,0 +1,96 @@
+title: ML and AI Software Development
+course_name_fi: "ML- ja AI-ohjelmistokehitys"
+course_code: "SOF019AS3AE-3001"
+credits: "5"
+degree_programme: "TRATI Tradenomi, tietojenkäsittely"
+teaching_language: "English"
+classification: "New technologies"
+course_type: "Hybrid"
+email: jukka.remes@haaga-helia.fi
+description: >-
+  Course page for the ML and AI Software Development course
+baseurl: ""
+url: ""
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+mermaid:
+  version: "11.4.1"
+callouts:
+  important:
+    title: Important
+    color: blue
+  warning:
+    title: Important!
+    color: red
+  highlight:
+    title: Heads-up
+    color: yellow
+  note:
+    title: Note
+    color: purple
+teacher_text: "Jukka Remes (jukka.remes@haaga-helia.fi)"
+# Placeholder. Replace with the Flinga board used for team enrolment.
+teams_flinga_link: "https://edu.flinga.fi/s/PLACEHOLDER"
+period_start: "19.10.2026"
+period_end: "11.12.2026"
+session_weekday: "Tuesdays"
+session_hours: "11:00–14:00"
+session_classroom: "The classroom is listed in the student calendars and in the course Moodle space."
+session_attendance: "Absence from more than 50% of the sessions leads to a failed grade."
+session_1_date: "20.10.2026"
+session_2_date: "27.10.2026"
+session_3_date: "3.11.2026"
+session_4_date: "10.11.2026"
+session_5_date: "17.11.2026"
+session_6_date: "24.11.2026"
+session_7_date: "1.12.2026"
+session_8_date: "8.12.2026"
+# Exercise 1 pipeline repository. The clone URL is
+# https://github.com/<exercise_1_github_org>/<exercise_1_repo_name>.git
+exercise_1_github_org: "MLnAISWDevelopment-SOF019AS3AE-3001"
+exercise_1_repo_name: "Config-Jukka-Remes-2026-10-05-d7809b86"
+exercise_1_base_branch: "development"
+exercise_1_notebook_path: "notebooks/demo-pipeline.ipynb"
+jupyterlab_desktop_releases: "https://github.com/jupyterlab/jupyterlab-desktop/releases/latest"
+ossmlops_ssh_key: "ossmlopsviewer"
+ossmlops_ssh_user: "ossmlopsviewer"
+ossmlops_vm_address: "VM_ADDRESS"
+kubeflow_host: "127.0.0.1"
+kubeflow_port: "8080"
+mlflow_host: "127.0.0.1"
+mlflow_port: "5000"
+mlflow_experiment_name: "demo-notebook"
+# Baseline run of Exercise 1. Evening before the week 3 session.
+week_2_deadline: "Mon 2.11. at 23:59"
+exercise_1_deadline: "Mon 9.11. at 23:59"
+exercise_2_deadline: "Mon 16.11. at 23:59"
+exercise_3_deadline: "Mon 23.11. at 23:59"
+exercise_4_deadline: "Mon 30.11. at 23:59"
+project_proposal_deadline: "Mon 30.11. at 23:59"
+exercise_5_deadline: "Fri 11.12. at 23:59"
+# Omitted from the GitHub Pages deploy. preview-site.sh still builds these
+# pages. Remove a path when that page is ready for students.
+unpublished_pages:
+  - material/exercise-2.md
+  - material/exercise-3.md
+  - material/exercise-4.md
+  - material/project-kickoff.md
+  - material/exercise-5.md
+  - material/project-description.md
+  - material/model-deployment.md
+  - material/genai-application.md
+  - material/problems-solutions.md
+exclude:
+  - material/other/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - slidev/
