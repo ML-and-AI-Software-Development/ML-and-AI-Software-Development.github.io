@@ -1,8 +1,10 @@
 # ML and AI Software Development
 
-Intended site: <https://ml-and-ai-software-development.github.io/>
+Site: <https://ml-and-ai-software-development.github.io/>
 
-Local source only. This repository has not been created on GitHub and has not been deployed.
+Source: <https://github.com/ML-and-AI-Software-Development/ML-and-AI-Software-Development.github.io>
+
+Pushes to `main` deploy through the GitHub Actions workflow in [`.github/workflows/jekyll.yml`](.github/workflows/jekyll.yml).
 
 The site keeps the Jekyll layout, navigation, schedule table, weekly material pages, and Slidev sources from [Software Development Project 1](https://github.com/software-development-project-1/software-development-project-1.github.io). Previous course text, images, and slide PDFs are removed. Pages are placeholders based on the course description.
 
