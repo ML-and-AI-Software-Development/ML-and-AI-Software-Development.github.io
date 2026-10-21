@@ -115,6 +115,8 @@ Recognition of prior learning (RPL / AHOT) is available by agreement. Contact {{
 | Exercise 5: Team Project | 30 |
 | **Total** | **100** |
 
+Completing an assignment after its deadline can lead to a reduction of 5 points for that exercise.
+
 | Points | Grade |
 | --- | ---: |
 | 90–100 | 5 |
