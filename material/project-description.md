@@ -23,7 +23,7 @@ Exercise 5 is a team project. Teams choose their own dataset and use case. The t
 4. Improvement iteration
 5. Model deployment
 6. Tool/API integration
-7. GenAI application
+7. GenAI application. The team chooses its own source texts, embeds short passages, and stores the vectors so a question can add those passages to the prompt. Exercise 2 already does this for a fixed set of notes. See [Exercise 5](/exercise-5).
 8. End-to-end workflow
 
 ## Target shape

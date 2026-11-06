@@ -38,6 +38,12 @@ Students apply the workflow learned during Exercises 1–4. The kickoff delivera
 7. GenAI application
 8. End-to-end workflow
 
+### Notes for the GenAI application
+
+Exercise 2 answers from notes that are already indexed. This project uses the team's own sources.
+
+Choose a small set of texts the use case is allowed to quote. Split them into short passages. Embed each passage and store the vectors. A question then selects a few passages, those passages are written into the prompt, and the model answers once. That is the same context enrichment as Exercise 2. The team does the embedding and storing for its own text. Name the sources, keep the index small, and do not put personal data in it.
+
 ### Required improvement loop
 
 Teams must demonstrate:

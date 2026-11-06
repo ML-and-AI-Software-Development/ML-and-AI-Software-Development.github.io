@@ -21,7 +21,7 @@ Weeks 7–8. Deadline is `exercise_5_deadline` in `_config.yml`.
 - Improvement iteration
 - Model deployment
 - Tool/API integration
-- GenAI application
+- GenAI application: embed the team's own notes and store them, so a question can add those passages to the prompt
 - End-to-end workflow
 
 ---

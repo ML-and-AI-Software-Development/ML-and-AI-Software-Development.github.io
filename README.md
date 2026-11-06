@@ -29,7 +29,7 @@ Dates, deadlines, the teacher line, the classroom, and session hours live in [`_
 | --- | --- | --- |
 | `session_1_date` Week 1 | [material/week-1.md](material/week-1.md) | [slidev/week-1.md](slidev/week-1.md) |
 | `session_2_date`, `session_3_date` Exercise 1 | [material/exercise-1.md](material/exercise-1.md) | [slidev/exercise-1.md](slidev/exercise-1.md) |
-| `session_3_date`, `session_4_date` Exercise 2 | [material/exercise-2.md](material/exercise-2.md) | [slidev/exercise-2.md](slidev/exercise-2.md) |
+| `session_4_date`, `session_5_date` Exercise 2 | [material/exercise-2.md](material/exercise-2.md) | [slidev/exercise-2.md](slidev/exercise-2.md) |
 | `session_5_date` Exercise 3 | [material/exercise-3.md](material/exercise-3.md) | [slidev/exercise-3.md](slidev/exercise-3.md) |
 | `session_6_date` Exercise 4 | [material/exercise-4.md](material/exercise-4.md) | [slidev/exercise-4.md](slidev/exercise-4.md) |
 | `session_6_date` Project kickoff | [material/project-kickoff.md](material/project-kickoff.md) | [slidev/project-kickoff.md](slidev/project-kickoff.md) |
