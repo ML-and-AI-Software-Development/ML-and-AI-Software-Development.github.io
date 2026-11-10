@@ -86,6 +86,20 @@ exercise_2_required_prompt: 'Begin every answer with "Wine notes:". Cite a sourc
 exercise_2_prompt_file: "api/routers/rag.py"
 exercise_2_workflow: ".github/workflows/exercise-2.yml"
 exercise_2_health_path: "/api/health"
+# Exercise 3 template repository. The clone URL is
+# https://github.com/<exercise_1_github_org>/<exercise_3_repo_name>.git
+# Preview pages stay in unpublished_pages until that repository is published.
+exercise_3_repo_name: "exercise-3-template"
+exercise_3_base_branch: "main"
+exercise_3_branch: "exercise-3-<id>"
+exercise_3_workflow: ".github/workflows/exercise-3.yml"
+exercise_3_runtime_file: "runtime.py"
+exercise_3_contract_file: "contract.json"
+exercise_3_request_file: "request.json"
+exercise_3_key_header: "X-Course-Key"
+exercise_3_fastapi_health_path: "/health"
+exercise_3_bentoml_health_path: "/healthz"
+exercise_3_predict_path: "/predict"
 csc_docs_home: "https://haagahelia.github.io/hh-csc-docs/"
 csc_docs_student_start: "https://haagahelia.github.io/hh-csc-docs/aloitus_opiskelija/"
 csc_docs_rahti_project: "https://haagahelia.github.io/hh-csc-docs/rahti/projektin_luonti/"
