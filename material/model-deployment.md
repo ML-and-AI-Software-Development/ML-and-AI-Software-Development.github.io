@@ -11,10 +11,6 @@ nav_order: 11
 
 This guide is the deploy path for [Exercise 3](/exercise-3). The exercise page explains the saved model, the scaler, and the two servers. The commands below publish both on the Rahti project from Exercise 2.
 
-{: .note }
-
-> Preview. This page is omitted from the public site until it is removed from `unpublished_pages`.
-
 Account, project, and the `oc` command are documented by Haaga-Helia. Follow those pages. This guide names the course values those pages do not know.
 
 | Step | Page |

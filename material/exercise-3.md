@@ -21,10 +21,6 @@ Session: {{ site.session_5_date }}. Exercise 2's prompt change is due the same e
 
 > Submission deadline: {{ site.exercise_3_deadline }}.
 
-{: .note }
-
-> Preview. This page is omitted from the public site until it is removed from `unpublished_pages`. Slide source: `slidev/exercise-3.md`.
-
 Deploy the Exercise 1 baseline model twice, on your own CSC Rahti project, and show that both servers return the same quality score for one request. One server is a small FastAPI application. The other is the same wrapper behind BentoML. The builds are local uploads, as in Exercise 2. A push checks the branch. It leaves the cluster alone.
 
 Exercise 4 will call the FastAPI service from the Exercise 2 application. Leave that deployment running.

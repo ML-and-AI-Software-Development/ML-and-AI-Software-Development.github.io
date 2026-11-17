@@ -86,9 +86,9 @@ exercise_2_required_prompt: 'Begin every answer with "Wine notes:". Cite a sourc
 exercise_2_prompt_file: "api/routers/rag.py"
 exercise_2_workflow: ".github/workflows/exercise-2.yml"
 exercise_2_health_path: "/api/health"
-# Exercise 3 template repository. The clone URL is
+# Exercise 3 is published. The exercise page, the model deployment guide,
+# and slides/exercise-3.pdf are on the public site. The clone URL is
 # https://github.com/<exercise_1_github_org>/<exercise_3_repo_name>.git
-# Preview pages stay in unpublished_pages until that repository is published.
 exercise_3_repo_name: "exercise-3-template"
 exercise_3_base_branch: "main"
 exercise_3_branch: "exercise-3-<id>"
@@ -109,12 +109,10 @@ csc_docs_debug: "https://haagahelia.github.io/hh-csc-docs/rahti/virheenjaljitys/
 # Omitted from the GitHub Pages deploy. preview-site.sh still builds these
 # pages. Remove a path when that page is ready for students.
 unpublished_pages:
-  - material/exercise-3.md
   - material/exercise-4.md
   - material/project-kickoff.md
   - material/exercise-5.md
   - material/project-description.md
-  - material/model-deployment.md
   - material/problems-solutions.md
 exclude:
   - material/other/
