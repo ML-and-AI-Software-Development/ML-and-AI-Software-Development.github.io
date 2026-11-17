@@ -45,7 +45,13 @@ git push -u origin exercise-3-<id>
 
 With the [week 1 tunnel](/week-1#ssh-tunnel-to-the-oss-mlops-platform) open, open your own week 2 run. Kubeflow and MLflow list every student's runs together, so find yours by the git commit of that push. On your `exercise-1-<id>` branch, that commit is the one from `git rev-parse HEAD` after the week 2 push. The Kubeflow run name ends with your branch and the first 7 characters of that commit. In MLflow the same commit is the parameter `git_commit_hash`.
 
-From that one run, copy the scaling file from the preprocess step to `model/scaler.pkl`. Copy the model file from the train step to `model/model.pkl`. Commit them. The week 3 run is the one you compared in Exercise 1. It is not the pair you deploy.
+The scaler is the Kubeflow artifact `scaler_out` from the preprocess step. Copy the run id from the address bar (`#/runs/details/<id>`). Open Artifacts and find the row named `scaler_out` whose address contains that id. The address starts with `minio://mlpipeline/`. Click it. The browser saves a file named `scaler_out`. Move that file to `model/scaler.pkl`.
+
+The Run output tab lists no artifacts. The preprocess archive `preprocess-scaler_out.tgz` holds a short note of the storage address. The scaler is the `scaler_out` download.
+
+The model is in MLflow for that same commit, at `wine-quality/model.pkl`. Download it and save it as `model/model.pkl`. Kubeflow stores the same model as the artifact `saved_model`.
+
+Commit them. The week 3 run is the one you compared in Exercise 1. It is not the pair you deploy.
 
 A model file is often too large to keep in a git repository. MLflow stores those files in separate storage, such as S3, and the git commit only records which run produced them. These two files are small, so this exercise commits them. The branch can then be built as it is, and the committed files can be compared with the run that saved them.
 

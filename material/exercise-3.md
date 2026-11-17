@@ -41,7 +41,13 @@ The two files already in the template are a stand-in, so the folder is complete 
 
 Kubeflow and MLflow list every student's runs together. Open yours by the git commit of that week 2 push, not by browsing the list. On your `exercise-1-<id>` branch, that commit is the one from `git rev-parse HEAD` after the week 2 push. The Kubeflow run name ends with your branch and the first 7 characters of that commit. In MLflow the same commit is the parameter `git_commit_hash`.
 
-With the [week 1 tunnel](/week-1#ssh-tunnel-to-the-oss-mlops-platform) open, copy the scaling file from the preprocess step of that run to `model/scaler.pkl`, and the model file from the train step of that same run to `model/model.pkl`. Commit them. The servers install scikit-learn 1.0.2, the version that saved those files.
+With the [week 1 tunnel](/week-1#ssh-tunnel-to-the-oss-mlops-platform) open, download both files and commit them. The servers install scikit-learn 1.0.2, the version that saved those files.
+
+The scaler is the Kubeflow artifact `scaler_out` from the preprocess step. Open the week 2 run and copy its id from the address bar (`#/runs/details/<id>`). Then open Artifacts and find the row named `scaler_out` whose address contains that id. The address starts with `minio://mlpipeline/`. Click it. The browser saves a file named `scaler_out`. Move that file to `model/scaler.pkl`.
+
+The Run output tab of the run lists no artifacts. The preprocess step also keeps a small archive, `preprocess-scaler_out.tgz`. That archive holds a short note of the storage address. The scaler is the `scaler_out` file from Artifacts.
+
+The model is in MLflow for the same commit, at `wine-quality/model.pkl`. Download it and save it as `model/model.pkl`. Kubeflow stores the same model as the artifact `saved_model`.
 
 A model file is often too large to keep in a git repository. MLflow stores those files in separate storage, such as S3, and the git commit only records which run produced them. These two files are small, so this exercise commits them. The branch can then be built as it is, and the committed files can be compared with the run that saved them.
 
@@ -188,8 +194,8 @@ bentoml https://exercise-3-bentoml-your-project.2.rahtiapp.fi
 
 | File | What it contains |
 | --- | --- |
-| `model/scaler.pkl` | The scaling file from your week 2 run, the run named with your branch and that commit |
-| `model/model.pkl` | The model file from that same run |
+| `model/scaler.pkl` | The Kubeflow artifact `scaler_out` from your week 2 run, saved under this name |
+| `model/model.pkl` | `wine-quality/model.pkl` from the MLflow run for that same commit |
 | `runtime.py` | The four functions filled in, with no `NotImplementedError` left |
 | `deployment.txt` | Two lines, `fastapi` and `bentoml`, each an `https://` URL with no path |
 | `response-fastapi.json` | The prediction body from the FastAPI route |
