@@ -29,42 +29,68 @@ Step-by-step commands are in the {% include page_link.html path="material/agent-
 
 In Exercise 2 every question takes the same path. The application embeds the question, selects notes, writes those notes into the prompt, and asks the model for one answer. The application decides the order. The model only writes the text. The prompt tells the assistant not to estimate a quality score.
 
-This exercise is the other kind of system. The model decides the next step. It can ask for the notes, ask for a quality estimate, ask for both, or answer with neither. The notes are the same wine notes as Exercise 2. The estimate comes from the Exercise 3 FastAPI service, through one MCP tool. The model has no other way to produce the score.
+This exercise is the other kind of system. The agent is the application around the chat model. Inside it, a loop calls the model, and the model decides the next step: the notes, a quality estimate, both, or the answer text. The notes are the same wine notes as Exercise 2. The estimate comes from the Exercise 3 FastAPI service, through one MCP tool. The model has no other way to produce the score.
 
 ```mermaid
 flowchart TB
-  user["You, and a mode"] --> agent["Exercise 4 agent<br/>one turn, up to four model calls"]
-  agent --> notes["search_notes<br/>wine-note index, inside the agent"]
-  agent --> mcp["MCP tool<br/>predict_quality"]
+  user["You, and a mode"] --> loop
+  subgraph agent["Exercise 4 agent"]
+    direction TB
+    loop["Loop<br/>this mode's tools, four calls"]
+    model["Chat model"]
+    notes["search_notes<br/>wine-note index"]
+    loop -->|"model call"| model
+    model -->|"answer or a tool call"| loop
+    loop -->|"search_notes"| notes
+    notes -->|"notes"| loop
+  end
+  loop -->|"predict_quality"| mcp["MCP server"]
   mcp --> fastapi["Exercise 3 FastAPI<br/>POST /predict"]
-  notes --> agent
   fastapi --> mcp
-  mcp --> agent
-  agent --> answer["Answer"]
+  mcp -->|"quality"| loop
+  loop --> answer["Answer"]
   classDef ask fill:#f7f4ee,stroke:#444,color:#222
+  classDef code fill:#f3ead2,stroke:#444,color:#222
+  classDef chat fill:#e5f2e8,stroke:#444,color:#222
   classDef tool fill:#e7eef8,stroke:#444,color:#222
   class user,answer ask
-  class agent,notes,mcp,fastapi tool
+  class loop code
+  class model chat
+  class notes,mcp,fastapi tool
+  style agent fill:#fbfaf7,stroke:#444,color:#222
 ```
 
-`search_notes` stays inside the agent. `predict_quality` is the only MCP tool. The FastAPI service stays the HTTP service from Exercise 3. The header on that call is `{{ site.exercise_3_key_header }}`. The agent never sees the key. BentoML is not on this path.
+The loop, the chat model call, and `search_notes` are the inside of the agent. `search_notes` reads the wine-note index in that process. `predict_quality` is the call that leaves the agent. The MCP server sends it to the Exercise 3 FastAPI service. The header on that call is `{{ site.exercise_3_key_header }}`. The loop never sees the key. BentoML is not on this path.
 
-A turn is a loop. The model sees the question and the tools for the selected mode. If it asks for a tool, the application runs that tool and sends the result back. The model then writes the answer, or asks for another tool. The loop stops after four model calls.
+One turn is the loop running. It sends the question and the tools for the selected mode on a model call. The model returns answer text, or a tool call. On a tool call the loop runs that tool. `search_notes` stays in the process. `predict_quality` is the MCP client. The result comes back to the loop, and the loop sends it on the next model call. The model then writes the answer, or asks for another tool. The loop stops after four model calls.
 
 ```mermaid
-flowchart LR
-  q["Question<br/>plus the tools for this mode"] --> model["Chat model"]
-  model -->|"answer text"| done["Answer"]
-  model -->|"tool call"| run["Run that tool"]
-  run --> back["Append the result<br/>as a tool message"]
-  back --> model
+flowchart TB
+  subgraph agent["Exercise 4 agent — one turn"]
+    direction TB
+    q["Question<br/>and this mode's tools"] --> loop["Loop"]
+    loop -->|"model call"| model["Chat model"]
+    model -->|"answer text"| loop
+    model -->|"tool call"| loop
+    loop -->|"search_notes"| notes["Wine-note index"]
+    loop -->|"predict_quality"| client["MCP client"]
+    notes --> back["Append the result<br/>as a tool message"]
+    client --> back
+    back --> loop
+  end
+  loop --> done["Answer"]
   classDef ask fill:#f7f4ee,stroke:#444,color:#222
+  classDef code fill:#f3ead2,stroke:#444,color:#222
+  classDef chat fill:#e5f2e8,stroke:#444,color:#222
   classDef tool fill:#e7eef8,stroke:#444,color:#222
   class q,done ask
-  class model,run,back tool
+  class loop,back code
+  class model chat
+  class notes,client tool
+  style agent fill:#fbfaf7,stroke:#444,color:#222
 ```
 
-The template runs the tool and records the trace. It does not yet append the result for the next model call. That step is one of the edits below.
+The template runs the tool and records the trace. The append back into the loop is not there yet. That step is one of the edits below.
 
 ### Four modes
 

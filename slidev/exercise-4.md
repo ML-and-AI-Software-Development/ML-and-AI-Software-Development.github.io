@@ -21,7 +21,7 @@ PDF export is still to do. Source for the deck is this file.
 
 Exercise 2 takes the same steps for every question. The application retrieves the notes, writes them into one prompt, and the model writes the text.
 
-This exercise is an agent. The model decides the next step.
+This exercise is an agent. The agent is the application. Inside it, a loop calls the chat model, and the model decides the next step.
 
 Exercise 2 stays deployed. This is a new application.
 
@@ -39,40 +39,65 @@ BentoML is not on this path. Scale it to zero only if the project cannot schedul
 
 ## Path
 
-```mermaid {theme: 'neutral', scale: 0.72}
+```mermaid {theme: 'neutral', scale: 0.62}
 flowchart TB
-  user["You, and a mode"] --> agent["Exercise 4 agent"]
-  agent --> notes["search_notes<br/>wine-note index"]
-  agent --> mcp["MCP predict_quality"]
-  mcp --> api["Exercise 3 FastAPI<br/>POST /predict"]
-  api --> answer["Answer"]
-  notes --> answer
+  user["You, and a mode"] --> loop
+  subgraph agent["Exercise 4 agent"]
+    direction TB
+    loop["Loop"]
+    model["Chat model"]
+    notes["search_notes"]
+    loop -->|"model call"| model
+    model -->|"answer or tool call"| loop
+    loop --> notes
+    notes --> loop
+  end
+  loop -->|"predict_quality"| mcp["MCP server"]
+  mcp --> api["Exercise 3 FastAPI"]
+  api --> mcp
+  mcp --> loop
+  loop --> answer["Answer"]
   classDef ask fill:#f7f4ee,stroke:#444,color:#222
+  classDef code fill:#f3ead2,stroke:#444,color:#222
+  classDef chat fill:#e5f2e8,stroke:#444,color:#222
   classDef tool fill:#e7eef8,stroke:#444,color:#222
   class user,answer ask
-  class agent,notes,mcp,api tool
+  class loop code
+  class model chat
+  class notes,mcp,api tool
+  style agent fill:#fbfaf7,stroke:#444,color:#222
 ```
 
-The agent never sees the course key. The MCP server sends `X-Course-Key`.
+The loop, the model call, and `search_notes` are inside the agent. The MCP server is outside, and it sends `X-Course-Key`. The loop never sees the key.
 
 ---
 
 ## One turn
 
-```mermaid {theme: 'neutral', scale: 0.7}
-flowchart LR
-  q["Question<br/>and this mode's tools"] --> model["Chat model"]
-  model -->|"answer"| done["Answer"]
-  model -->|"tool call"| run["Run the tool"]
-  run --> back["Append the result<br/>as a tool message"]
-  back --> model
+```mermaid {theme: 'neutral', scale: 0.58}
+flowchart TB
+  subgraph agent["Exercise 4 agent — one turn"]
+    direction TB
+    q["Question and tools"] --> loop["Loop"]
+    loop -->|"model call"| model["Chat model"]
+    model -->|"answer or tool call"| loop
+    loop --> run["Run the tool"]
+    run --> back["Append the result"]
+    back --> loop
+  end
+  loop --> done["Answer"]
   classDef ask fill:#f7f4ee,stroke:#444,color:#222
+  classDef code fill:#f3ead2,stroke:#444,color:#222
+  classDef chat fill:#e5f2e8,stroke:#444,color:#222
   classDef tool fill:#e7eef8,stroke:#444,color:#222
   class q,done ask
-  class model,run,back tool
+  class loop,back code
+  class model chat
+  class run tool
+  style agent fill:#fbfaf7,stroke:#444,color:#222
 ```
 
-The template records the result and does not send it back. That append is yours.
+The model call returns to the loop. The loop runs the tool. The template records the result and does not send it back. That append is yours.
 
 The loop stops after four model calls.
 
