@@ -160,4 +160,4 @@ Do not put personal data in the chat. Do not commit the API token or the passwor
 
 ## Connect a prediction tool
 
-Exercise 4 adds one tool to this same assistant. The tool calls the Exercise 1 quality model, reached through an MCP service, and the assistant reports that estimate next to the cited note. The Exercise 2 repository does not contain that tool. Deploying the quality model itself is [Exercise 3](/exercise-3), on the OSS MLOps platform, which is a different step from this Rahti application.
+Exercise 4 is a separate application on this same Rahti project. It leaves this assistant as it is. The new application is an agent. One of its tools calls the Exercise 1 quality model through an MCP service, which calls the FastAPI deployment from [Exercise 3](/exercise-3). Leave that deployment running.

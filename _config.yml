@@ -100,6 +100,21 @@ exercise_3_key_header: "X-Course-Key"
 exercise_3_fastapi_health_path: "/health"
 exercise_3_bentoml_health_path: "/healthz"
 exercise_3_predict_path: "/predict"
+# Exercise 4 pages are written and still unpublished. The slides PDF,
+# the documentation URL recheck, and the Aitta tool-call check are still
+# open. Leave these paths in unpublished_pages until those are done.
+# See exercise-4-plan.md in the course workspace.
+exercise_4_repo_name: "exercise-4-template"
+exercise_4_base_branch: "main"
+exercise_4_branch: "exercise-4-<id>"
+exercise_4_workflow: ".github/workflows/exercise-4.yml"
+exercise_4_agent_file: "api/routers/agent.py"
+exercise_4_mcp_file: "mcp_server/predict_quality.py"
+exercise_4_trials_file: "trials.md"
+exercise_4_deployment_file: "deployment.txt"
+exercise_4_health_path: "/api/health"
+exercise_4_chat_path: "/chat"
+exercise_4_quality_url: "http://exercise-3-fastapi:8000"
 csc_docs_home: "https://haagahelia.github.io/hh-csc-docs/"
 csc_docs_student_start: "https://haagahelia.github.io/hh-csc-docs/aloitus_opiskelija/"
 csc_docs_rahti_project: "https://haagahelia.github.io/hh-csc-docs/rahti/projektin_luonti/"
@@ -110,6 +125,8 @@ csc_docs_debug: "https://haagahelia.github.io/hh-csc-docs/rahti/virheenjaljitys/
 # pages. Remove a path when that page is ready for students.
 unpublished_pages:
   - material/exercise-4.md
+  - material/agent-application.md
+  - material/agent-reading.md
   - material/project-kickoff.md
   - material/exercise-5.md
   - material/project-description.md

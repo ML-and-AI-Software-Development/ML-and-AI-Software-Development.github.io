@@ -32,4 +32,12 @@ Placeholder. Failures while packaging or calling the endpoint from [Exercise 3](
 
 ## Tool integration
 
-Placeholder. Failures while connecting the GenAI application to the model in [Exercise 4](/exercise-4).
+Failures while connecting the agent in [Exercise 4](/exercise-4) to the FastAPI service from [Exercise 3](/exercise-3). The deploy steps are on the [agent application](/agent-application) guide.
+
+- Every mode returns an empty trace. `MODES` in `api/routers/agent.py` is still empty.
+- The trace shows a tool result and the chat API then returns an error. `run_turn` did not append that result as a tool message. Rebuild the agent image.
+- Notes mode answers, and Estimate mode does not. The schema in `mcp_server/predict_quality.py` is still empty, the handler still raises `NotImplementedError`, or the `exercise-4-mcp` pod is not running. Rebuild that image after the edit.
+- Estimate mode returns an error about the key. The MCP pod reads `COURSE_KEY` from the secret `exercise-3-access`. That is the Exercise 3 key.
+- The agent cannot reach the model. The FastAPI deployment has to stay running. Inside the project the address is `http://exercise-3-fastapi:8000`.
+- A new pod stays `Pending`. Scale `exercise-3-bentoml` to zero. Leave the FastAPI deployment running.
+- The chat returns `429`. The shared course token was called too often in one minute. Wait and ask again.
