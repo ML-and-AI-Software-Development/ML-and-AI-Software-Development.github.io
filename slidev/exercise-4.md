@@ -13,27 +13,37 @@ Session {{ site.session_6_date }}. Deadline {{ site.exercise_4_deadline }}.
 
 The same session includes the team project kickoff.
 
-PDF export is still to do. Source for the deck is this file.
+---
+
+## Learning focus
+
+- A loop that calls the chat model, and can call it again
+- A mode as the set of tools offered on one turn
+- The tool result sent back before the next model call
+- A scope rule in the system prompt
+- One MCP tool in front of the Exercise 3 prediction service
 
 ---
 
-## What changed
+## A fixed path, then a loop
 
 Exercise 2 takes the same steps for every question. The application retrieves the notes, writes them into one prompt, and the model writes the text.
 
-This exercise is an agent. The agent is the application. Inside it, a loop calls the chat model, and the model decides the next step.
+This exercise is an agent. The agent is the application around the chat model. A loop inside it calls the model with the question and the tools for the selected mode.
+
+The model returns answer text, or a tool call. On a tool call the loop runs the tool and calls the model again. The loop stops after four model calls.
 
 Exercise 2 stays deployed. This is a new application.
 
 ---
 
-## Leave these running
+## Inside the agent
 
-The Exercise 2 assistant.
+- The loop offers this mode's tools and counts the model calls
+- The chat model returns the answer text or a tool call
+- `search_notes` reads the wine-note index in this process
 
-The Exercise 3 FastAPI service, at `http://exercise-3-fastapi:8000` inside the project.
-
-BentoML is not on this path. Scale it to zero only if the project cannot schedule another pod.
+`predict_quality` leaves the agent. An MCP server calls the Exercise 3 FastAPI service and sends `X-Course-Key`. The loop never sees the key.
 
 ---
 
@@ -74,15 +84,18 @@ The loop, the model call, and `search_notes` are inside the agent. The MCP serve
 
 ## One turn
 
-```mermaid {theme: 'neutral', scale: 0.58}
+```mermaid {theme: 'neutral', scale: 0.52}
 flowchart TB
   subgraph agent["Exercise 4 agent — one turn"]
     direction TB
     q["Question and tools"] --> loop["Loop"]
     loop -->|"model call"| model["Chat model"]
-    model -->|"answer or tool call"| loop
-    loop --> run["Run the tool"]
-    run --> back["Append the result"]
+    model -->|"answer text"| loop
+    model -->|"tool call"| loop
+    loop -->|"search_notes"| notes["Wine-note index"]
+    loop -->|"predict_quality"| client["MCP client"]
+    notes --> back["Append the result"]
+    client --> back
     back --> loop
   end
   loop --> done["Answer"]
@@ -93,19 +106,27 @@ flowchart TB
   class q,done ask
   class loop,back code
   class model chat
-  class run tool
+  class notes,client tool
   style agent fill:#fbfaf7,stroke:#444,color:#222
 ```
 
-The model call returns to the loop. The loop runs the tool. The template records the result and does not send it back. That append is yours.
+The model call returns to the loop. The loop runs `search_notes` here, or calls MCP. The template records the result and does not send it back. That append is yours.
 
-The loop stops after four model calls.
+---
+
+## Leave these running
+
+The Exercise 2 assistant.
+
+The Exercise 3 FastAPI service, at `http://exercise-3-fastapi:8000` inside the project.
+
+BentoML is not on this path. Scale it to zero only if the project cannot schedule another pod.
 
 ---
 
 ## Four modes
 
-The mode chooses which tools are offered. The agent decides whether to call them.
+The mode chooses which tools the loop offers. The model decides whether to call a tool it was offered.
 
 | Mode | Offered |
 | --- | --- |
