@@ -52,9 +52,21 @@ Kubeflow and MLflow list every student's runs together. Open yours by the git co
 
 The Kubeflow run name ends with your `exercise-1-<id>` branch and the first 7 characters of that commit. In MLflow the same commit is the parameter `git_commit_hash`.
 
-Copy the scaling file from the preprocess step and the model file from the train step of that same run. The week 3 run is not the pair you deploy.
+The week 3 run is not the pair you deploy. The servers install scikit-learn 1.0.2, the version that saved those files.
 
-The servers install scikit-learn 1.0.2, the version that saved those files.
+---
+
+## Download the two files
+
+The scaler is the Kubeflow artifact `scaler_out` from the preprocess step.
+
+Copy the run id from `#/runs/details/<id>`. In Artifacts, open the `scaler_out` row whose address contains that id. The address starts with `minio://mlpipeline/`.
+
+The browser saves `scaler_out`. Move it to `model/scaler.pkl`.
+
+The model is MLflow `wine-quality/model.pkl`. Save it as `model/model.pkl`. Kubeflow stores the same model as `saved_model`.
+
+The Run output tab lists no artifacts. `preprocess-scaler_out.tgz` is a short note of the storage address.
 
 ---
 
@@ -184,8 +196,8 @@ Send `request.json` to both routes with the header. Save both bodies. The qualit
 
 | File | What it contains |
 | --- | --- |
-| `model/scaler.pkl` | The scaling file from your week 2 run |
-| `model/model.pkl` | The model file from that same run |
+| `model/scaler.pkl` | Kubeflow `scaler_out` from your week 2 run, saved under this name |
+| `model/model.pkl` | MLflow `wine-quality/model.pkl` for that same commit |
 | `runtime.py` | The four functions filled in |
 | `deployment.txt` | Both `https` addresses, no path |
 | `response-fastapi.json` | The FastAPI prediction |
