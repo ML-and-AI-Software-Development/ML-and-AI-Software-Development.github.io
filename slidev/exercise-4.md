@@ -29,7 +29,11 @@ The same session includes the team project kickoff.
 
 Exercise 2 takes the same steps for every question. The application retrieves the notes, writes them into one prompt, and the model writes the text.
 
-This exercise is an agent. The agent is the application around the chat model. A loop inside it calls the model with the question and the tools for the selected mode.
+This exercise is an agent. The agent is the application around the chat model.
+
+That application comprises what can nowadays be called an agent harness: the loop, the mode table, the scope rule, and the quality tool. The model can only take a step the harness offers, and it never sees the course key.
+
+A loop inside it calls the model with the question and the tools for the selected mode.
 
 The model returns answer text, or a tool call. On a tool call the loop runs the tool and calls the model again. The loop stops after four model calls.
 
@@ -234,13 +238,13 @@ Without a scope rule the model answers anyway, and it can sound sure.
 
 The rule in the system prompt is the bound for this exercise. The mode table is another: a tool that is not offered cannot be called.
 
-Larger systems put the same bound in a library, or in an engine hook. The extra reading page says where.
+The scope rule and the mode table are bounds of this agent harness. A library and an engine are larger arrangements of the same kind. Those are called harnesses too. The extra reading page says where.
 
 ---
 
 ## Code-based frameworks
 
-A library your program calls. You still write the application. The library owns the loop, the memory, and the tracing.
+A code library is an agent harness your program calls. You still write the application. The library owns the loop, the memory, and the tracing.
 
 LangChain, LangGraph, LlamaIndex, CrewAI, Pydantic AI, the OpenAI Agents SDK, Google's Agent Development Kit, Semantic Kernel, smolagents.
 
@@ -252,7 +256,7 @@ This exercise does not add those libraries.
 
 ## Engine-based agents
 
-The product already runs the loop. The project supplies the configuration.
+An engine is an agent harness that already runs, which you configure. The project supplies the configuration.
 
 Instructions, skills, MCP servers, and hooks.
 

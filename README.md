@@ -35,7 +35,7 @@ Dates, deadlines, the teacher line, the classroom, and session hours live in [`_
 | `session_6_date` Project kickoff | [material/project-kickoff.md](material/project-kickoff.md) | [slidev/project-kickoff.md](slidev/project-kickoff.md) |
 | `session_7_date`, `session_8_date` Exercise 5 | [material/exercise-5.md](material/exercise-5.md) | [slidev/exercise-5.md](slidev/exercise-5.md) |
 
-Supporting pages: [project description](material/project-description.md), [model deployment guide](material/model-deployment.md), [GenAI application guide](material/genai-application.md), [agent application guide](material/agent-application.md), [extra reading on agent systems](material/agent-reading.md), [problems and solutions](material/problems-solutions.md). The Exercise 4 pages stay in `unpublished_pages` until the slides PDF is exported. Supplementary notes live in `material/other/` and are not navigation pages.
+Supporting pages: [project description](material/project-description.md), [model deployment guide](material/model-deployment.md), [GenAI application guide](material/genai-application.md), [agent application guide](material/agent-application.md), [extra reading on agent systems](material/agent-reading.md), [problems and solutions](material/problems-solutions.md). Supplementary notes live in `material/other/` and are not navigation pages.
 
 ## Local preview
 

@@ -9,6 +9,8 @@ nav_order: 7
 
 # Week 6: Exercise 4 (20 points)
 
+[Slides (PDF)](/slides/exercise-4.pdf)
+
 ## GenAI and ML integration
 
 Session: {{ site.session_6_date }}. The same session includes the {% include page_link.html path="material/project-kickoff.md" url="/project-kickoff" text="team project kickoff" %}.
@@ -16,10 +18,6 @@ Session: {{ site.session_6_date }}. The same session includes the {% include pag
 {: .highlight }
 
 > Submission deadline: {{ site.exercise_4_deadline }}.
-
-{: .note }
-
-> This page stays off the public site until the slides PDF is exported. Slide source: `slidev/exercise-4.md`.
 
 Deploy a second application next to the [Exercise 2](/exercise-2) assistant. Leave that assistant running. Leave the Exercise 3 FastAPI deployment running. The new application is an agent. It can search the wine notes, call the quality model, do both, or do neither, depending on the mode you select and on what the question needs.
 
@@ -29,7 +27,11 @@ Step-by-step commands are in the {% include page_link.html path="material/agent-
 
 In Exercise 2 every question takes the same path. The application embeds the question, selects notes, writes those notes into the prompt, and asks the model for one answer. The application decides the order. The model only writes the text. The prompt tells the assistant not to estimate a quality score.
 
-This exercise is the other kind of system. The agent is the application around the chat model. Inside it, a loop calls the model, and the model decides the next step: the notes, a quality estimate, both, or the answer text. The notes are the same wine notes as Exercise 2. The estimate comes from the Exercise 3 FastAPI service, through one MCP tool. The model has no other way to produce the score.
+This exercise is the other kind of system. The agent is the application around the chat model.
+
+That application comprises what can nowadays be called an "agent harness": the loop, the mode table, the scope rule, and the quality tool. The chat model sits inside the harness. The model can only take a step the harness offers, and it never sees the course key.
+
+Inside it, a loop calls the model, and the model decides the next step: the notes, a quality estimate, both, or the answer text. The notes are the same wine notes as Exercise 2. The estimate comes from the Exercise 3 FastAPI service, through one MCP tool. The model has no other way to produce the score.
 
 ```mermaid
 flowchart TB
@@ -204,6 +206,6 @@ Notes retrieves a note and does not call `predict_quality`. Estimate does the op
 
 ### Guardrails, and where to read on
 
-A system prompt is a guardrail. Without the scope rule, the model answers questions this assistant was not built for, and it can sound sure. The rule you write is what keeps the answer on the wine notes and the quality estimate. The same need shows up in larger systems: a library can restrict which tools a step may call, and an engine can run a hook that blocks a call. This exercise is the small version, written where you can see it.
+A system prompt is a guardrail. Without the scope rule, the model answers questions this assistant was not built for, and it can sound sure. The rule you write is what keeps the answer on the wine notes and the quality estimate. The same need shows up in larger systems: a library can restrict which tools a step may call, and an engine can run a hook that blocks a call. The scope rule and the mode table are the bounds of this agent harness, the parts you can see. A code library and an engine, on the extra reading page, are larger arrangements of the same kind. Those are called harnesses too.
 
 The assignment stops at this application. Two wider ways of building agents, with documentation links, are on the {% include page_link.html path="material/agent-reading.md" url="/agent-reading" text="extra reading" %} page. Code libraries own the loop when you no longer want to maintain it by hand. Engines such as Claude Code already run the loop, and the project supplies instructions, skills, MCP servers, and hooks. The GAIK solution wizard is the worked example of that second kind. The reading page also says where a guardrail sits in each of those.

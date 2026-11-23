@@ -26,11 +26,15 @@ The project already exists. Exercise 2 and Exercise 3 deployed into it. Do not c
 
 Leave the Exercise 2 route up. Leave the `exercise-3-fastapi` deployment up. Exercise 4 calls it inside the project at `{{ site.exercise_4_quality_url }}`.
 
-BentoML is not used here. If the project cannot schedule another pod, scale that deployment to zero and leave FastAPI running:
+BentoML is not used here. The project CPU limit is 4. Exercise 2 already uses part of it, and each build pod is charged another 500m, because a build that sets no CPU limit receives the project default of 500m. A pod that is still in `ImagePullBackOff` holds its CPU limit too.
+
+When a build or a new pod cannot be created, scale the BentoML deployment to zero and leave FastAPI running:
 
 ```bash
 oc scale deployment/exercise-3-bentoml --replicas=0
 ```
+
+That frees 500m. `Pending` is one thing you may see on a pod. The failure this project hits is often a build that never starts. `oc get builds` shows `New`. `oc describe build <name>` says `CannotCreateBuildPod` and `exceeded quota`. `oc get pods` does not list that build.
 
 ## Run the provided example
 
@@ -82,6 +86,10 @@ oc start-build exercise-4-mcp --from-dir=. --follow
 oc start-build exercise-4-web --from-dir=. --follow
 ```
 
+Run these one at a time. Wait until the pod named `exercise-4-agent-N-build`, `exercise-4-mcp-N-build`, or `exercise-4-web-N-build` is gone before you start the next. Two build pods at once do not fit once Exercise 2, both Exercise 3 servers, and the three Exercise 4 pods are already charged.
+
+`oc start-build --follow` can exit with `Unable to connect to the server: unexpected EOF` while the build is still `New`. The upload finished. The build did not. Run `oc describe build <name>`. When the quota line is still there, wait for the previous build pod to disappear, or scale BentoML to zero as above. Start that build again after the line is gone.
+
 Read the route host:
 
 ```bash
@@ -90,7 +98,7 @@ oc get route exercise-4-web -o jsonpath='{.spec.host}{"\n"}'
 
 Open `https://<host>{{ site.exercise_4_health_path }}`. A successful check returns a JSON object whose `status` is `ok`. That address stays open. The chat does not. Open `https://<host>/`, enter the password, then open `{{ site.exercise_4_chat_path }}`.
 
-The agent indexes the wine notes when it starts. The chat model is `{{ site.exercise_2_chat_model }}` and the embedding model is `{{ site.exercise_2_embedding_model }}`, both called through the cloud vendor AI API service at `{{ site.exercise_2_aitta_base_url }}`. This term that service is CSC Aitta. The first question can sit for several minutes while the service loads the chat model.
+The agent indexes the wine notes when the process starts. The pod stays unready for a few minutes while that index is built. In a trial run the wait was about four minutes, and the log ended with `Indexed 17 wine-note sections`. That wait is startup. The chat model is `{{ site.exercise_2_chat_model }}` and the embedding model is `{{ site.exercise_2_embedding_model }}`, both called through the cloud vendor AI API service at `{{ site.exercise_2_aitta_base_url }}`. This term that service is CSC Aitta. The first question can sit for several minutes while the service loads the chat model.
 
 Write the host into `{{ site.exercise_4_deployment_file }}` as one line:
 
@@ -157,7 +165,7 @@ git push
 - Notes answers, and Estimate does not. `INPUT_SCHEMA` is still empty, `call_quality_service` still raises `NotImplementedError`, or the `exercise-4-mcp` pod is not running. Rebuild that image after editing the file.
 - Estimate returns an error about the key. The MCP pod reads `COURSE_KEY` from the secret `exercise-3-access`. That is the key you already chose for Exercise 3.
 - The agent cannot reach the model. `oc get deployment exercise-3-fastapi` should show a ready pod. The address inside the project is `{{ site.exercise_4_quality_url }}`.
-- A new pod stays `Pending`. Scale `exercise-3-bentoml` to zero, as above. Leave FastAPI running.
+- A new pod stays `Pending`, or `oc describe build <name>` says `CannotCreateBuildPod` or `exceeded quota`. Scale `exercise-3-bentoml` to zero, as above. Leave FastAPI running. `oc start-build --follow` can exit with `unexpected EOF` while that build is still `New`. Describe the build before you upload the directory again.
 - The route is missing. `oc get route exercise-4-web` and the [debugging page]({{ site.csc_docs_debug }}).
 
 Do not put personal data in the chat. Do not commit the API token, the course key, or the password you chose.

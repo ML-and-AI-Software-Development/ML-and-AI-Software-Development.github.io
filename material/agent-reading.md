@@ -9,15 +9,14 @@ nav_order: 15
 
 {% comment %}
 Teacher: external URLs below were not fetched when this page was written.
-Recheck them before removing this page from unpublished_pages.
 OpenCode has a docs home only. Its hooks page was not confirmed.
 {% endcomment %}
 
 # Extra reading: agent systems
 
-[Exercise 4](/exercise-4) uses a short loop written in the template, and one MCP tool you finish yourself. That is enough to see an agent choose a tool, and to see what the answer does when the notes, the tool, both, or neither are available.
+[Exercise 4](/exercise-4) writes, in one file, what can nowadays be called an "agent harness": a loop, a tool list, a scope rule, and one MCP tool. That is enough to see an agent choose a tool, and to see what the answer does when the notes, the tool, both, or neither are available.
 
-Two other ways of building the same kind of system are in wide use. You do not need either of them for the exercise. They are the usual next step when the system grows past one file you want to maintain by hand.
+A code library and an engine are two other arrangements people call a harness. A library is a harness your program calls. An engine is a harness that already runs, which you configure. You do not need either of them for the exercise. They are the usual next step when the system grows past one file you want to maintain by hand.
 
 ## Code-based frameworks
 
@@ -90,7 +89,7 @@ The course site does not ask you to run the wizard for Exercise 4. It is the nea
 
 ## Guardrails
 
-The model will answer a question it was not given the means to answer. The reply can be fluent and wrong. A guardrail is the bound you put on that.
+The model will answer a question it was not given the means to answer. The reply can be fluent and wrong. A guardrail is the bound you put on that. Inside an agent harness, a guardrail is one such bound. It is not another name for the harness.
 
 In Exercise 4 the bound is the scope rule in the system prompt: the wine-quality notes and the quality estimate, and a refusal outside that. The mode table is a second bound. A mode that does not offer a tool cannot call it.
 

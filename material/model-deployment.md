@@ -41,7 +41,7 @@ git push -u origin exercise-3-<id>
 
 ## Package the model
 
-`contract.json` is the column order. `request.json` is the body you will send. The two files in `model/` are a stand-in. Replace them before you build.
+`contract.json` is the column order. `request.json` is the body you will send. The two files in `model/` are a stand-in. Those files are enough for the pods to become ready and for both routes to return a quality number. The GitHub check still fails until you replace both files with the pair from your own week-2 run. A successful curl shows the route. The check compares the committed files with that run. Replace them before you build.
 
 With the [week 1 tunnel](/week-1#ssh-tunnel-to-the-oss-mlops-platform) open, open your own week 2 run. Kubeflow and MLflow list every student's runs together, so find yours by the git commit of that push. On your `exercise-1-<id>` branch, that commit is the one from `git rev-parse HEAD` after the week 2 push. The Kubeflow run name ends with your branch and the first 7 characters of that commit. In MLflow the same commit is the parameter `git_commit_hash`.
 
@@ -140,6 +140,10 @@ In `openshift/buildconfigs.yaml`, replace `exercise-3-ID` with your branch name 
 oc start-build exercise-3-fastapi --from-dir=. --follow
 oc start-build exercise-3-bentoml --from-dir=. --follow
 ```
+
+Run those two commands one at a time. On this Rahti project each build pod is charged 500m CPU, because a build that sets no CPU limit receives the project default of 500m. The project limit is 4 CPU. Wait until the pod named `exercise-3-fastapi-N-build` or `exercise-3-bentoml-N-build` is gone before you start the next build. Applying the deployments before the images exist creates pods, and those pods hold their CPU limit while they are in `ImagePullBackOff`.
+
+`oc start-build --follow` can exit with `Unable to connect to the server: unexpected EOF` while the build is still `New`. Read it with `oc describe build <name>`. When the text says `CannotCreateBuildPod` or `exceeded quota`, wait until the previous build pod is gone, then start that build again.
 
 A new build after a change to `runtime.py` is the same pair of commands.
 
