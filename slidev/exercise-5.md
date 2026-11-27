@@ -11,7 +11,9 @@ A new application for a new problem — 30 points
 
 Sessions {{ site.session_7_date }} and {{ site.session_8_date }}.
 
-Deadline {{ site.exercise_5_deadline }}.
+First deadline: the presentation on {{ site.session_8_date }}, 3 points.
+
+Submission deadline: {{ site.exercise_5_deadline }}.
 
 <div class="mt-6 p-4 border-4 border-red-700 text-red-800 font-bold text-xl">
 
@@ -53,7 +55,7 @@ A few rounds, logged in MLflow. Compare them. Deploy the best model before you c
 
 Deploy it the way Exercise 3 deployed a model.
 
-The README lists the experiments, which one was selected, and why.
+`## Experiments` lists those MLflow experiments, which one was selected, and why.
 
 ---
 

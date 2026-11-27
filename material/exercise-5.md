@@ -9,6 +9,8 @@ nav_order: 9
 
 # Weeks 7–8: Exercise 5 (30 points)
 
+[Slides (PDF)](/slides/exercise-5.pdf)
+
 ## A new application for a new problem
 
 Sessions: {{ site.session_7_date }} and {{ site.session_8_date }}.
@@ -20,10 +22,6 @@ Sessions: {{ site.session_7_date }} and {{ site.session_8_date }}.
 {: .warning }
 
 > Each of these cuts 5 points from the total. A submission after the deadline. A team of one. A README that does not use the required headings, in the required order, spelled as specified. Each rule is repeated where it applies.
-
-{: .note }
-
-> Slide source: `slidev/exercise-5.md`. There is no slide PDF yet.
 
 Apply what you did in [Exercise 1](/exercise-1), [Exercise 2](/exercise-2), [Exercise 3](/exercise-3), and [Exercise 4](/exercise-4). Build an application of the same kind as Exercise 4, for a new problem. There is no template repository and no template application. You may reuse code from the earlier exercises. Repurpose it and customize it for this problem. The submission shows that you can apply that code.
 
