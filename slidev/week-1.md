@@ -43,8 +43,8 @@ AI-assisted development tools are used throughout. Assessment is about implement
 - Weeks 2–3. Exercise 1, ML pipeline — 15 points. Baseline due {{ site.week_2_deadline }}, required to continue
 - Weeks 4–5. Exercise 2, GenAI application — 15 points. Baseline due {{ site.exercise_2_baseline_deadline }}. Prompt change due {{ site.exercise_2_deadline }}
 - Week 5. Exercise 3, model deployment — 20 points. Starts while Exercise 2 is still open
-- Week 6. Exercise 4, GenAI and ML integration — 20 points. Team project kickoff
-- Weeks 7–8. Exercise 5, end-to-end system — 30 points
+- Week 6. Exercise 4, GenAI and ML integration — 20 points
+- Weeks 7–8. Exercise 5, a new application for a new problem — 30 points
 
 Exercises 1–4 are individual. Exercise 5 is the team project.
 

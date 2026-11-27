@@ -16,7 +16,7 @@ Dates, deadlines, the teacher line, the classroom, and session hours live in [`_
 
 ## New implementation checklist
 
-1. Update [teacher's information](_config.yml) and the [Flinga board link](_config.yml) for project team enrolment
+1. Update [teacher's information](_config.yml)
 2. Confirm the [deadline schedule](_config.yml)
 3. Update the session fields in [`_config.yml`](_config.yml). [`_includes/teaching_sessions.html`](_includes/teaching_sessions.html) prints them.
 4. When a page is ready for students, remove its path from `unpublished_pages` in [_config.yml](_config.yml). The GitHub Pages build omits that list. `preview-site.sh` still shows those pages.
@@ -32,10 +32,9 @@ Dates, deadlines, the teacher line, the classroom, and session hours live in [`_
 | `session_4_date`, `session_5_date` Exercise 2 | [material/exercise-2.md](material/exercise-2.md) | [slidev/exercise-2.md](slidev/exercise-2.md) |
 | `session_5_date` Exercise 3 | [material/exercise-3.md](material/exercise-3.md) | [slidev/exercise-3.md](slidev/exercise-3.md) |
 | `session_6_date` Exercise 4 | [material/exercise-4.md](material/exercise-4.md) | [slidev/exercise-4.md](slidev/exercise-4.md) |
-| `session_6_date` Project kickoff | [material/project-kickoff.md](material/project-kickoff.md) | [slidev/project-kickoff.md](slidev/project-kickoff.md) |
 | `session_7_date`, `session_8_date` Exercise 5 | [material/exercise-5.md](material/exercise-5.md) | [slidev/exercise-5.md](slidev/exercise-5.md) |
 
-Supporting pages: [project description](material/project-description.md), [model deployment guide](material/model-deployment.md), [GenAI application guide](material/genai-application.md), [agent application guide](material/agent-application.md), [extra reading on agent systems](material/agent-reading.md), [problems and solutions](material/problems-solutions.md). Supplementary notes live in `material/other/` and are not navigation pages.
+Supporting pages: [model deployment guide](material/model-deployment.md), [GenAI application guide](material/genai-application.md), [agent application guide](material/agent-application.md), [extra reading on agent systems](material/agent-reading.md), [problems and solutions](material/problems-solutions.md). Supplementary notes live in `material/other/` and are not navigation pages.
 
 ## Local preview
 

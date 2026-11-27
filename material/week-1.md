@@ -103,4 +103,4 @@ Placeholder. Document the required tools, accounts, and how to verify that the e
 
 ### Course project overview
 
-The later exercises build one path: adapt an ML pipeline, adapt a GenAI application, deploy the improved model, connect that model to the GenAI application as a tool, then build a new end-to-end system in a team. Details are on the [schedule](/schedule) and the {% include page_link.html path="material/project-description.md" url="/project-description" text="project description" %}.
+The later exercises build one path: adapt an ML pipeline, adapt a GenAI application, deploy the improved model, connect that model to the GenAI application as a tool, then build a new application of that kind in a team. Details are on the [schedule](/schedule) and {% include page_link.html path="material/exercise-5.md" url="/exercise-5" text="Exercise 5" %}.

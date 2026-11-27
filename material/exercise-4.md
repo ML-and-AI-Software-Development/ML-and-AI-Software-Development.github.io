@@ -13,7 +13,7 @@ nav_order: 7
 
 ## GenAI and ML integration
 
-Session: {{ site.session_6_date }}. The same session includes the {% include page_link.html path="material/project-kickoff.md" url="/project-kickoff" text="team project kickoff" %}.
+Session: {{ site.session_6_date }}. The team application is {% include page_link.html path="material/exercise-5.md" url="/exercise-5" text="Exercise 5" %}, on the following two weeks.
 
 {: .highlight }
 

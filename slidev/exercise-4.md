@@ -11,7 +11,7 @@ GenAI and ML integration — 20 points
 
 Session {{ site.session_6_date }}. Deadline {{ site.exercise_4_deadline }}.
 
-The same session includes the team project kickoff.
+Exercise 5, the team application, is on the following two weeks.
 
 ---
 

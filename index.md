@@ -35,7 +35,7 @@ Students use AI-assisted development tools throughout the course. Assessment foc
 
 {% include teaching_sessions.html %}
 
-Week 1 is an introduction and environment setup, with no graded submission. Exercises 1–4 are individual. Exercise 5 is a team project. See the [schedule](/schedule) and the {% include page_link.html path="material/project-description.md" url="/project-description" text="project description" %}.
+Week 1 is an introduction and environment setup, with no graded submission. Exercises 1–4 are individual. Exercise 5 is a team project. See the [schedule](/schedule) and {% include page_link.html path="material/exercise-5.md" url="/exercise-5" text="Exercise 5" %}.
 
 In week 1, clone the Exercise 1 pipeline repository and create a branch named `exercise-1-<id>`. The teacher gives you the id. Completed exercises are tracked from that branch name, and a branch without the id cannot be graded.
 

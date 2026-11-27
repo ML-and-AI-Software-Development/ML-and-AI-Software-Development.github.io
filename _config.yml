@@ -30,10 +30,8 @@ callouts:
     title: Note
     color: purple
 teacher_text: "Jukka Remes (jukka.remes@haaga-helia.fi)"
-# Placeholder. Replace with the Flinga board used for team enrolment.
-teams_flinga_link: "https://edu.flinga.fi/s/PLACEHOLDER"
 period_start: "19.10.2026"
-period_end: "11.12.2026"
+period_end: "13.12.2026"
 session_weekday: "Tuesdays"
 session_hours: "11:00–14:00"
 session_classroom: "The classroom is listed in the student calendars and in the course Moodle space."
@@ -70,8 +68,7 @@ exercise_2_baseline_deadline: "Mon 16.11. at 23:59"
 exercise_2_deadline: "Mon 23.11. at 23:59"
 exercise_3_deadline: "Mon 23.11. at 23:59"
 exercise_4_deadline: "Mon 30.11. at 23:59"
-project_proposal_deadline: "Mon 30.11. at 23:59"
-exercise_5_deadline: "Fri 11.12. at 23:59"
+exercise_5_deadline: "Sun 13.12. at 23:59"
 # Exercise 2 is published. The exercise page, the GenAI guide, and
 # slides/exercise-2.pdf are on the public site.
 exercise_2_repo_name: "exercise-2-template"
@@ -121,9 +118,7 @@ csc_docs_debug: "https://haagahelia.github.io/hh-csc-docs/rahti/virheenjaljitys/
 # Omitted from the GitHub Pages deploy. preview-site.sh still builds these
 # pages. Remove a path when that page is ready for students.
 unpublished_pages:
-  - material/project-kickoff.md
   - material/exercise-5.md
-  - material/project-description.md
   - material/problems-solutions.md
 exclude:
   - material/other/
